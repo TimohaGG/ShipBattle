@@ -9,7 +9,6 @@ struct Player {
 	Player() {
 		CreateField(field);
 		CreateField(fieldForKills);
-		PrintField(field);
 	}
 	char CreateField(char field[width][width]);
 	
