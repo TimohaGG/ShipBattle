@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{fb9bdda5-5573-4477-b9ea-af3a532c30ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{3866666a-ddb7-4395-80bc-d643705f3f31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Menu">
+      <UniqueIdentifier>{0c535140-d3bd-40ad-8808-465ba7753efd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Lib">
+      <UniqueIdentifier>{8ccb5c0a-5f3d-4ba4-97a7-50cb0ccff772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Entities">
+      <UniqueIdentifier>{26f286c9-c31f-4714-bd61-fd156eb7ce93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Entities\Ship">
+      <UniqueIdentifier>{7546469a-e78e-4cf7-9339-78a7f784ab9c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\Lib\Lib.h">
+      <Filter>Core\Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Entities\Ship\Ship.h">
+      <Filter>Core\Entities\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Menu\Menu.h">
+      <Filter>UI\Menu</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\Entities\Ship\Ship.cpp">
+      <Filter>Core\Entities\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+</Project>
