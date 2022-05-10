@@ -24,17 +24,17 @@
     <ClInclude Include="Core\Lib\Lib.h">
       <Filter>Core\Lib</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Entities\Ship\Player.h">
-      <Filter>Core\Entities\Player</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Menu\Menu.h">
       <Filter>UI\Menu</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Entities\Player\Player.h">
+      <Filter>Core\Entities\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Entities\Ship\Player.cpp">
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Core\Entities\Player\Player.cpp">
       <Filter>Core\Entities\Player</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp" />
   </ItemGroup>
 </Project>
