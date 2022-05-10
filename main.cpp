@@ -1,4 +1,4 @@
-#include"Core/Entities/Ship/Player.h"
+#include"Core/Entities/Player/Player.h"
 int main() {
 	setlocale(0,"");
 	Player a;
