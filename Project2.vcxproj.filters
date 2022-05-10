@@ -16,7 +16,7 @@
     <Filter Include="Core\Entities">
       <UniqueIdentifier>{26f286c9-c31f-4714-bd61-fd156eb7ce93}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Entities\Ship">
+    <Filter Include="Core\Entities\Player">
       <UniqueIdentifier>{7546469a-e78e-4cf7-9339-78a7f784ab9c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -24,16 +24,16 @@
     <ClInclude Include="Core\Lib\Lib.h">
       <Filter>Core\Lib</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Entities\Ship\Ship.h">
-      <Filter>Core\Entities\Ship</Filter>
+    <ClInclude Include="Core\Entities\Ship\Player.h">
+      <Filter>Core\Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="UI\Menu\Menu.h">
       <Filter>UI\Menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Entities\Ship\Ship.cpp">
-      <Filter>Core\Entities\Ship</Filter>
+    <ClCompile Include="Core\Entities\Ship\Player.cpp">
+      <Filter>Core\Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
   </ItemGroup>

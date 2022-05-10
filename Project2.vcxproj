@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\Entities\Ship\Ship.h" />
+    <ClInclude Include="Core\Entities\Ship\Player.h" />
     <ClInclude Include="Core\Lib\Lib.h" />
     <ClInclude Include="UI\Menu\Menu.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Entities\Ship\Ship.cpp" />
+    <ClCompile Include="Core\Entities\Ship\Player.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
