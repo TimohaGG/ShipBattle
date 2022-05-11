@@ -317,7 +317,7 @@ void cheats(Player enemy) {
 
 }
 
-void setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActivated) {
+bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActivated) {
 	char xStr;
 	string yStr;
 	if (bot) {
@@ -331,6 +331,7 @@ void setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 			if (xStr == '/') {
 				cheats(enemy);
 				cheatActivated = true;
+				return cheatActivated;
 				break;
 			}
 		} while (xStr < 65 || xStr>74);
@@ -344,6 +345,7 @@ void setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 		}
 
 	}
+	return false;
 }
 
 bool findCoords(ship flot, int x, int y) {
@@ -485,8 +487,8 @@ int turnToKill(Player& a, Player& b, bool& turn) {
 	}
 	int killX, killY;
 	bool cheatActivated = false;
-	setCoordinatesToKill(killX, killY, a.autoPlay, b, cheatActivated);
-	if (!cheatActivated) {
+	
+	if (!setCoordinatesToKill(killX, killY, a.autoPlay, b, cheatActivated)) {
 		if (b.field[killY][killX] == 'S') {
 			cout << "Попал\n";
 			Sleep(2000);
@@ -541,7 +543,7 @@ bool win(ship* flot) {
 
 bool Player::PlayerTurn(Player& a,Player& b, int playerNum, bool& turn)
 {
-	cout << "Ходит игрок 1\n";
+	cout << "Ходит игрок "<<playerNum<<endl;
 	system("pause");
 	turnToKill( a,  b, turn);
 	if (win(b.flot)) {

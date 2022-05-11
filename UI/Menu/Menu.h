@@ -43,7 +43,7 @@ struct Menu {
 				gameOver=a.PlayerTurn(a,b, 1,turn);
 			}
 			while (!turn) {
-				gameOver=b.PlayerTurn(b,a, 1,turn);
+				gameOver=b.PlayerTurn(b,a, 2,turn);
 			}
 		}
 	}
