@@ -2,10 +2,10 @@
 #include"../../Core/Entities/Player/Player.h"
 void printRules() {
 
-	cout << "Правила игры в морской бой\n";
-	cout << "1.\t= - пустая клетка \n\tS - корабль \n\tХ - Уничтоженый корабль\n";
-	cout << "2.\tКорабли нельзя располагать рядом друг с другом\n\t(только так)\n";
-	cout << "\t  0 1 2 3 4 5 6 7 8 9\n\tA = = = = = = = = = =\n\tB = = = = = S S S = =\n\tC = = S S S = = = = =\n\tD = = = = = = = = = =\n";
+	cout << "Правила игры в морской бой" << endl;
+	cout << "1.\t= - пустая клетка " << endl << "\tS - корабль " << endl << "\tХ - Уничтоженый корабль" << endl;
+	cout << "2.\tКорабли нельзя располагать рядом друг с другом" << endl << "\t(только так)\n";
+	cout << "\t  0 1 2 3 4 5 6 7 8 9" << endl << "\tA = = = = = = = = = =" << endl << "\tB = = = = = S S S = =" << endl << "\tC = = S S S = = = = =" << endl << "\tD = = = = = = = = = =" << endl;
 	system("pause");
 	system("cls");
 }
@@ -13,9 +13,9 @@ void printRules() {
 struct Menu {
 	Menu(Player& a, Player& b) {
 		int choise;
-		cout << "Добро пожаловать в морской бой!!!\n";
+		cout << "Добро пожаловать в морской бой!!!" << endl;
 		do {
-			cout << "1. Выбрать режим игры\n2. Правила игры\n3. Выход\n";
+			cout << "1. Выбрать режим игры" << endl << "2. Правила игры" << endl << "3. Выход" << endl;
 			cin >> choise;
 			system("cls");
 			switch (choise) {
@@ -32,7 +32,7 @@ struct Menu {
 		a.SettingFlot(playerNumber);
 		playerNumber = 2;
 		b.SettingFlot(2);
-		cout << "Нажмите любую клавишу что бы начать игру\n";
+		cout << "Нажмите любую клавишу что бы начать игру" << endl;
 		_getch();
 	}
 	void StartGame(Player a, Player b) {

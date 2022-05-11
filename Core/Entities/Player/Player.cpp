@@ -38,14 +38,14 @@ void Player::PrintField(char field[width][width]) {
 			}
 
 		}
-		cout << "\n";
+		cout << endl;
 	}
-	cout << "\n" << "\n";
+	cout << endl << endl;
 }
 
 bool putMode() {
 
-	cout << "1. Автоматическая расстановка кораблей\n2. Ручная расстановка кораблей\n";
+	cout << "1. Автоматическая расстановка кораблей"<<endl<<"2. Ручная расстановка кораблей"<<endl;
 	int choise;
 	cin >> choise;
 	switch (choise) {
@@ -62,7 +62,7 @@ bool putMode() {
 
 void Gamemode(bool& autoPut1, bool& autoPut2, bool& autoPlay1, bool& autoPlay2)
 {
-	cout << "1.Одиночный режим\n2. Мультиплеер\n";
+	cout << "1.Одиночный режим"<<endl<<"2. Мультиплеер"<<endl;
 	int choise;
 	cin >> choise;
 	system("cls");
@@ -74,10 +74,10 @@ void Gamemode(bool& autoPut1, bool& autoPut2, bool& autoPlay1, bool& autoPlay2)
 		break;
 	}
 	case 2: {
-		cout << "Игрок 1 выбирает расстановку:\n";
+		cout << "Игрок 1 выбирает расстановку:"<<endl;
 		autoPut1 = putMode();
 		system("cls");
-		cout << "Игрок 2 выбирает расстановку:\n";
+		cout << "Игрок 2 выбирает расстановку:" << endl;
 		autoPut2 = putMode();
 		break;
 	}
@@ -133,12 +133,12 @@ bool setCoordinates(int& x, int& y, bool bot, char field[width][width]) {
 		}
 		else {
 			do {
-				cout << "Введите Х\n";
+				cout << "Введите координату 1(A - J)"<<endl;
 				cin >> xStr;
 			} while (xStr < 65 || xStr>74);
 			x = changeLetter(xStr);
 			do {
-				cout << "Введите У\n";
+				cout << "Введите Введите координату 2(0-9)"<<endl;
 				cin >> yStr;
 			} while (yStr < "0" || yStr>"9" || yStr.length() > 1);
 			y = stoi(yStr);
@@ -184,7 +184,7 @@ bool directionChose(int x, int y, int decks, char field[width][width], int& dire
 			direction = rand() % (5 - 1) + 1;
 		}
 		else {
-			cout << "В какую сторону продолжить корабль?\n1. Впрво\n2. Влево\n3. Вниз\n4. Вверх\n";
+			cout << "В какую сторону продолжить корабль?"<<endl<<"1. Впрво" << endl << "2. Влево" << endl << "3. Вниз" << endl << "4. Вверх" << endl;
 			cin >> direction;
 		}
 		for (size_t i = 0; i < decks; i++)
@@ -262,7 +262,7 @@ bool checkSides(int decks, int x, int y, char field[width][width], int direction
 
 char Player::SettingFlot(int player)
 {
-	cout << "Игрок "<<player<<" расставляет корабли...\n";
+	cout << "Игрок "<<player<<" расставляет корабли..." << endl;
 	system("pause");
 	int shipTotal = 0;
 	for (size_t decks = 1, shipAmount = 4; decks <= 4; decks++, shipAmount--)//decks amount
@@ -272,7 +272,7 @@ char Player::SettingFlot(int player)
 
 			while (!setCoordinates(x, y, autoPut, field) || !directionChose(x, y, decks, field, direction,autoPut) || !checkSides(decks, x, y, field, direction)) {
 				if (!autoPut) {
-					cout << "Ошибка постановки корабля!!!\n";
+					cout << "Ошибка постановки корабля!!!" << endl;
 					system("pause");
 					system("cls");
 					if (!autoPlay)PrintField(field);
@@ -292,15 +292,15 @@ char Player::SettingFlot(int player)
 	}
 
 	if (!autoPlay)PrintField(field);
-	cout << "Корабли успешно расставлены!\n";
+	cout << "Корабли успешно расставлены" << endl;
 	system("pause");
 	system("cls");
 	return field[width][width];
 }
 
 void cheats(Player enemy) {
-	cout << "ВЫ АКТИВИРОВАЛИ ЧИТЫ!!!\n";
-	cout << "Введите команду...\n";
+	cout << "ВЫ АКТИВИРОВАЛИ ЧИТЫ!!!" << endl;
+	cout << "Введите команду..." << endl;
 	char command[256];
 	cin >> command;
 	system("cls");
@@ -312,7 +312,7 @@ void cheats(Player enemy) {
 		system("cls");
 	}
 	else {
-		cout << "Упс. Такой команды нету. В следуйщий раз повезет!\n";
+		cout << "Упс. Такой команды нету. В следуйщий раз повезет!" << endl;
 	}
 
 }
@@ -326,7 +326,7 @@ bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 	}
 	else {
 		do {
-			cout << "Введите Х\n";
+			cout << "Введите координату 1(A-J)" << endl;
 			cin >> xStr;
 			if (xStr == '/') {
 				cheats(enemy);
@@ -338,7 +338,7 @@ bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 		if (!cheatActivated) {
 			x = changeLetter(xStr);
 			do {
-				cout << "Введите У\n";
+				cout << "Введите координату 2(0-9)" << endl;
 				cin >> yStr;
 			} while (yStr < "0" || yStr>"9" || yStr.length() > 1);
 			y = stoi(yStr);
@@ -480,9 +480,9 @@ char circleKill(ship flot, char myFieldForKills[width][width]) {
 
 int turnToKill(Player& a, Player& b, bool& turn) {
 	if (!a.autoPlay) {
-		cout << "Ваше поле\n";
+		cout << "Ваше поле" << endl;
 		a.PrintField(a.field);
-		cout << "Поле для ходов\n";
+		cout << "Поле для ходов" << endl;
 		a.PrintField(a.fieldForKills);
 	}
 	int killX, killY;
@@ -490,21 +490,21 @@ int turnToKill(Player& a, Player& b, bool& turn) {
 	
 	if (!setCoordinatesToKill(killX, killY, a.autoPlay, b, cheatActivated)) {
 		if (b.field[killY][killX] == 'S') {
-			cout << "Попал\n";
+			cout << "Попал" << endl;
 			Sleep(2000);
 			system("cls");
 			b.field[killY][killX] = 'X';
 			a.fieldForKills[killY][killX] = 'X';
 			int shipIndex = findShipIndex(killX, killY, b.flot);
 			if (checkKill(shipIndex, b.field, b.flot)) {
-				cout << "Убил!\n";
+				cout << "Убил!" << endl;
 				system("pause");
 				system("cls");
 				circleKill(b.flot[shipIndex], a.fieldForKills);
 			}
 		}
 		else {
-			cout << "Мимо!\n";
+			cout << "Мимо!" << endl;
 			a.fieldForKills[killY][killX] = '·';
 			if (a.autoPlay)a.PrintField(a.fieldForKills);
 			system("pause");
@@ -519,7 +519,7 @@ int turnToKill(Player& a, Player& b, bool& turn) {
 		}
 	}
 	else {
-		cout << "Чит успешно применен\n";
+		cout << "Чит успешно применен" << endl;
 		cheatActivated = false;
 		system("pause");
 		system("cls");
