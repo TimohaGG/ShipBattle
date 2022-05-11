@@ -4,7 +4,6 @@
 #include<Windows.h>
 #include<string>
 
-#define width 10
 using std::cin;
 using std::cout;
 using std::string;
@@ -18,3 +17,7 @@ struct ship {
 	int deckNum = 0;
 	bool isDestroyed = false;
 };
+
+
+
+#define width 10

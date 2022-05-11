@@ -25,6 +25,7 @@ struct Menu {
 			case 2:
 				printRules();
 				break;
+			default:exit(0);
 			}
 			system("cls");
 		} while (choise != 1);

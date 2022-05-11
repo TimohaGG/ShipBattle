@@ -124,7 +124,7 @@ int changeLetter(char symbol) {
 
 bool setCoordinates(int& x, int& y, bool bot, char field[width][width]) {
 	//ставим первую координату и проверем нет ли на ней корабля
-	char xStr;
+	
 	string yStr;
 	do {
 		if (bot) {
@@ -132,15 +132,14 @@ bool setCoordinates(int& x, int& y, bool bot, char field[width][width]) {
 			y = rand() % 9;
 		}
 		else {
+			string coords;
 			do {
-				cout << "Введите координату 1(A - J)"<<endl;
-				cin >> xStr;
-			} while (xStr < 65 || xStr>74);
-			x = changeLetter(xStr);
-			do {
-				cout << "Введите Введите координату 2(0-9)"<<endl;
-				cin >> yStr;
-			} while (yStr < "0" || yStr>"9" || yStr.length() > 1);
+				
+				cout << "Куда ставить корабль (Например А5)?" << endl;
+				cin >> coords;
+			} while (coords.length()!=2 || coords[0] < 'A' || coords[0]>'J'||!isdigit(coords[1]));
+			x = changeLetter(coords[0]);
+			yStr = coords[1];
 			y = stoi(yStr);
 		}
 	} while (field[y][x] == 'S');
@@ -263,6 +262,7 @@ bool checkSides(int decks, int x, int y, char field[width][width], int direction
 char Player::SettingFlot(int player)
 {
 	cout << "Игрок "<<player<<" расставляет корабли..." << endl;
+	PrintField(field);
 	system("pause");
 	int shipTotal = 0;
 	for (size_t decks = 1, shipAmount = 4; decks <= 4; decks++, shipAmount--)//decks amount
@@ -287,11 +287,11 @@ char Player::SettingFlot(int player)
 			setShip(field, direction, decks, x, y);
 			if (!autoPut)PrintField(field);
 
-			if (!autoPut)system("pause");
+			
 		}
 	}
 
-	if (!autoPlay)PrintField(field);
+	
 	cout << "Корабли успешно расставлены" << endl;
 	system("pause");
 	system("cls");
@@ -325,7 +325,24 @@ bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 		y = rand() % 9;
 	}
 	else {
+		string coords;
 		do {
+
+			cout << "Куда ставить корабль (Например А5)?" << endl;
+			cin >> coords;
+		} while (coords.length() != 2 || !isdigit(coords[1]));
+		if (coords[0] == '/') {
+			cheats(enemy);
+			return true;
+		}
+		else {
+			x = changeLetter(coords[0]);
+			yStr = coords[1];
+			y = stoi(yStr);
+			return false;
+		}
+		
+		/*do {
 			cout << "Введите координату 1(A-J)" << endl;
 			cin >> xStr;
 			if (xStr == '/') {
@@ -342,7 +359,7 @@ bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 				cin >> yStr;
 			} while (yStr < "0" || yStr>"9" || yStr.length() > 1);
 			y = stoi(yStr);
-		}
+		}*/
 
 	}
 	return false;
