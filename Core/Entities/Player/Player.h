@@ -14,7 +14,7 @@ struct Player {
 	
 	void PrintField(char field[width][width]);
 	ship* flot=new ship[10];
-	char SettingFlot();
+	char SettingFlot(int player);
 	
 };
 void Gamemode(bool& autoPut1, bool& autoPut2, bool& autoPlay1, bool& autoPlay2);

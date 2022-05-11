@@ -28,17 +28,10 @@ struct Menu {
 			}
 			system("cls");
 		} while (choise != 1);
-		cout << "Игрок 1 расставляет корабли...\n";
-		system("pause");
-		a.SettingFlot();
-		a.PrintField(a.field);
-		cout << "Корабли успешно расставлены!\n";
-		system("pause");
-		system("cls");
-		cout << "Игрок 2 расставляет корабли...\n";
-		system("pause");
-		b.SettingFlot();
-		if(!b.autoPlay)b.PrintField(b.field);
+		int playerNumber = 1;
+		a.SettingFlot(playerNumber);
+		playerNumber = 2;
+		b.SettingFlot(2);
 		cout << "Нажмите любую клавишу что бы начать игру\n";
 		_getch();
 	}

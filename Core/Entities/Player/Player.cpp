@@ -260,8 +260,10 @@ bool checkSides(int decks, int x, int y, char field[width][width], int direction
 	}
 }
 
-char Player::SettingFlot()
+char Player::SettingFlot(int player)
 {
+	cout << "Игрок "<<player<<" расставляет корабли...\n";
+	system("pause");
 	int shipTotal = 0;
 	for (size_t decks = 1, shipAmount = 4; decks <= 4; decks++, shipAmount--)//decks amount
 	{
@@ -288,5 +290,10 @@ char Player::SettingFlot()
 			if (!autoPut)system("pause");
 		}
 	}
+
+	if (!autoPlay)PrintField(field);
+	cout << "Корабли успешно расставлены!\n";
+	system("pause");
+	system("cls");
 	return field[width][width];
 }
