@@ -11,7 +11,7 @@ void printRules() {
 }
 
 struct Menu {
-	Menu(Player a,Player b) {
+	Menu(Player& a, Player& b) {
 		int choise;
 		cout << "Добро пожаловать в морской бой!!!\n";
 		do {
@@ -34,5 +34,17 @@ struct Menu {
 		b.SettingFlot(2);
 		cout << "Нажмите любую клавишу что бы начать игру\n";
 		_getch();
+	}
+	void StartGame(Player a, Player b) {
+		bool turn = true;
+		bool gameOver = false;
+		while (!gameOver) {
+			while (turn) {
+				gameOver=a.PlayerTurn(a,b, 1,turn);
+			}
+			while (!turn) {
+				gameOver=b.PlayerTurn(b,a, 1,turn);
+			}
+		}
 	}
 };

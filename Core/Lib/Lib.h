@@ -3,12 +3,12 @@
 #include<conio.h>
 #include<Windows.h>
 #include<string>
+
 #define width 10
 using std::cin;
 using std::cout;
 using std::string;
 using std::endl;
-
 
 
 struct ship {

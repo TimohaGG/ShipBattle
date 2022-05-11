@@ -297,3 +297,257 @@ char Player::SettingFlot(int player)
 	system("cls");
 	return field[width][width];
 }
+
+void cheats(Player enemy) {
+	cout << "ВЫ АКТИВИРОВАЛИ ЧИТЫ!!!\n";
+	cout << "Введите команду...\n";
+	char command[256];
+	cin >> command;
+	system("cls");
+	char cheatCommands[] = { "/show_enemy_field" };
+
+	if (strcmp(cheatCommands, command) == 0) {
+		enemy.PrintField(enemy.field);
+		Sleep(1500);
+		system("cls");
+	}
+	else {
+		cout << "Упс. Такой команды нету. В следуйщий раз повезет!\n";
+	}
+
+}
+
+void setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActivated) {
+	char xStr;
+	string yStr;
+	if (bot) {
+		x = rand() % 9;
+		y = rand() % 9;
+	}
+	else {
+		do {
+			cout << "Введите Х\n";
+			cin >> xStr;
+			if (xStr == '/') {
+				cheats(enemy);
+				cheatActivated = true;
+				break;
+			}
+		} while (xStr < 65 || xStr>74);
+		if (!cheatActivated) {
+			x = changeLetter(xStr);
+			do {
+				cout << "Введите У\n";
+				cin >> yStr;
+			} while (yStr < "0" || yStr>"9" || yStr.length() > 1);
+			y = stoi(yStr);
+		}
+
+	}
+}
+
+bool findCoords(ship flot, int x, int y) {
+	bool thisShip = false;
+	for (size_t i = 0; i < flot.deckNum; i++)
+	{
+		switch (flot.direction) {
+		case 1: {			//right
+			if (flot.x + i == x && flot.y == y)return true;
+			else if (flot.x - i == x && flot.y == y)return true;
+			else thisShip = false;
+			break;
+		}
+		case 2: {			//left
+			if (flot.x - i == x && flot.y == y) return true;
+			else if (flot.x + i == x && flot.y == y)return true;
+			else thisShip = false;
+			break;
+		}
+		case 3: {			//bottom
+			if (flot.x == x && flot.y + i == y) return true;
+			else if (flot.x == x && flot.y - i == y)return true;
+			else thisShip = false;
+			break;
+		}
+		case 4: {			//top
+			if (flot.x == x && flot.y - i == y) return true;
+			else if (flot.x == x && flot.y - i == y)return true;
+			else thisShip = false;
+			break;
+		}
+		default:return false;
+		}
+	}
+	return false;
+}
+
+int findShipIndex(int x, int y, ship* flot) {
+	for (size_t i = 0; i < 10; i++)
+	{
+		if (x == flot[i].x && y == flot[i].y || findCoords(flot[i], x, y)) {
+			return i;
+		}
+	}
+}
+
+
+bool checkKill(int shipIndex, char fieldEnemy[width][width], ship* flotEnemy) {
+	int x, y;
+
+	x = flotEnemy[shipIndex].x;
+	y = flotEnemy[shipIndex].y;
+	for (size_t i = 0; i < flotEnemy[shipIndex].deckNum; i++)
+	{
+		switch (flotEnemy[shipIndex].direction) {
+		case 0: {
+			flotEnemy[shipIndex].isDestroyed = true;
+			return true;
+			break;
+		}
+		case 1: {
+			if (fieldEnemy[y][x + i] == 'S')
+				return false;
+			break;
+		}
+		case 2: {
+			if (fieldEnemy[y][x - i] == 'S')
+				return false;
+			break;
+		}
+		case 3: {
+			if (fieldEnemy[y + i][x] == 'S')
+				return false;
+			break;
+		}
+		case 4: {
+			if (fieldEnemy[y - i][x] == 'S')
+				return false;
+			break;
+		}
+		}
+	}
+	flotEnemy[shipIndex].isDestroyed = true;
+	return true;
+}
+
+
+char circleKill(ship flot, char myFieldForKills[width][width]) {
+	int x = flot.x;
+	int y = flot.y;
+
+	for (size_t i = 0; i < flot.deckNum; i++)
+	{
+		if (x + 1 <= 9)
+			if (myFieldForKills[y][x + 1] != 'X')
+				myFieldForKills[y][x + 1] = '·';
+		if (x - 1 >= 0)
+			if (myFieldForKills[y][x - 1] != 'X')
+				myFieldForKills[y][x - 1] = '·';
+		if (y + 1 <= 9)
+			if (myFieldForKills[y + 1][x] != 'X')
+				myFieldForKills[y + 1][x] = '·';
+		if (y - 1 >= 0)
+			if (myFieldForKills[y - 1][x] != 'X')
+				myFieldForKills[y - 1][x] = '·';
+		switch (flot.direction) {
+		case 0: {
+			return myFieldForKills[width][width];
+			break;
+		}
+		case 1: {
+			x += 1;
+			break;
+		}
+		case 2: {
+			x -= 1;
+			break;
+		}
+		case 3: {
+			y += 1;
+			break;
+		}
+		case 4: {
+			y -= 1;
+			break;
+		}
+		}
+	}
+	return myFieldForKills[width][width];
+}
+
+
+int turnToKill(Player& a, Player& b, bool& turn) {
+	if (!a.autoPlay) {
+		cout << "Ваше поле\n";
+		a.PrintField(a.field);
+		cout << "Поле для ходов\n";
+		a.PrintField(a.fieldForKills);
+	}
+	int killX, killY;
+	bool cheatActivated = false;
+	setCoordinatesToKill(killX, killY, a.autoPlay, b, cheatActivated);
+	if (!cheatActivated) {
+		if (b.field[killY][killX] == 'S') {
+			cout << "Попал\n";
+			Sleep(2000);
+			system("cls");
+			b.field[killY][killX] = 'X';
+			a.fieldForKills[killY][killX] = 'X';
+			int shipIndex = findShipIndex(killX, killY, b.flot);
+			if (checkKill(shipIndex, b.field, b.flot)) {
+				cout << "Убил!\n";
+				system("pause");
+				system("cls");
+				circleKill(b.flot[shipIndex], a.fieldForKills);
+			}
+		}
+		else {
+			cout << "Мимо!\n";
+			a.fieldForKills[killY][killX] = '·';
+			if (a.autoPlay)a.PrintField(a.fieldForKills);
+			system("pause");
+			system("cls");
+			if (turn)
+				turn = false;
+			else
+				turn = true;
+
+
+			return 0;
+		}
+	}
+	else {
+		cout << "Чит успешно применен\n";
+		cheatActivated = false;
+		system("pause");
+		system("cls");
+		if (turn)
+			turn = false;
+		else
+			turn = true;
+	}
+
+}
+
+bool win(ship* flot) {
+	for (size_t i = 0; i < 10; i++)
+	{
+		if (flot[i].isDestroyed == false) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool Player::PlayerTurn(Player& a,Player& b, int playerNum, bool& turn)
+{
+	cout << "Ходит игрок 1\n";
+	system("pause");
+	turnToKill( a,  b, turn);
+	if (win(b.flot)) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
