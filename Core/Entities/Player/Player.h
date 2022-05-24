@@ -20,3 +20,4 @@ struct Player {
 	bool PlayerTurn(Player& a,Player& b, int playerNum, bool& turn);
 };
 void Gamemode(bool& autoPut1, bool& autoPut2, bool& autoPlay1, bool& autoPlay2);
+void SaveGameProgress(char field[width][width]);

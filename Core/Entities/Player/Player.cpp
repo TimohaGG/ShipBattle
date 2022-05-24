@@ -317,7 +317,26 @@ void cheats(Player enemy) {
 
 }
 
-bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActivated) {
+void SaveGameProgress(char field[width][width], string filename) {
+	ofstream Player1(filename, ios::out);
+	if (Player1.is_open()) {
+		
+		for (size_t i = 0; i < width; i++)
+		{
+			for (size_t j = 0; j < width; j++)
+			{
+				Player1 << field[i][j];
+			}
+			Player1 << endl;
+
+		}
+
+		
+		Player1.close();
+	}
+}
+
+bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActivated, Player me) {
 	char xStr;
 	string yStr;
 	if (bot) {
@@ -330,10 +349,20 @@ bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 
 			cout << "Куда ставить корабль (Например А5)?" << endl;
 			cin >> coords;
+			if (coords == "save")
+				break;
 		} while (coords.length() != 2 || !isdigit(coords[1]));
 		if (coords[0] == '/') {
 			cheats(enemy);
 			return true;
+		}
+		else if (coords == "save") {
+			SaveGameProgress(me.field, "Player1Field.txt");
+			SaveGameProgress(me.fieldForKills, "Player1Kills.txt");
+			SaveGameProgress(enemy.field, "Player2Field.txt");
+			SaveGameProgress(enemy.fieldForKills, "Player2Kills.txt");
+			cout << "Спасибо за игру!!!";
+			exit(0);
 		}
 		else {
 			x = changeLetter(coords[0]);
@@ -342,24 +371,7 @@ bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 			return false;
 		}
 		
-		/*do {
-			cout << "Введите координату 1(A-J)" << endl;
-			cin >> xStr;
-			if (xStr == '/') {
-				cheats(enemy);
-				cheatActivated = true;
-				return cheatActivated;
-				break;
-			}
-		} while (xStr < 65 || xStr>74);
-		if (!cheatActivated) {
-			x = changeLetter(xStr);
-			do {
-				cout << "Введите координату 2(0-9)" << endl;
-				cin >> yStr;
-			} while (yStr < "0" || yStr>"9" || yStr.length() > 1);
-			y = stoi(yStr);
-		}*/
+	
 
 	}
 	return false;
@@ -505,7 +517,7 @@ int turnToKill(Player& a, Player& b, bool& turn) {
 	int killX, killY;
 	bool cheatActivated = false;
 	
-	if (!setCoordinatesToKill(killX, killY, a.autoPlay, b, cheatActivated)) {
+	if (!setCoordinatesToKill(killX, killY, a.autoPlay, b, cheatActivated, a)) {
 		if (b.field[killY][killX] == 'S') {
 			cout << "Попал" << endl;
 			Sleep(2000);
