@@ -356,7 +356,10 @@ bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 			cin >> coords;
 			if (coords == "save")
 				break;
+
+			
 		} while (coords.length() != 2 || !isdigit(coords[1]));
+
 		if (coords[0] == '/') {
 			cheats(enemy);
 			return true;
@@ -369,14 +372,21 @@ bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 			exit(0);
 		}
 		else {
+			
 			x = changeLetter(coords[0]);
 			yStr = coords[1];
 			y = stoi(yStr);
-			return false;
+			
+			
 		}
 		
 	
 
+	}
+
+	if (me.fieldForKills[y][x] == -73) {
+		cout << "Ошибка постановки корабля!!! "<<endl<<"Координаты заняты!!!"<<endl;
+		setCoordinatesToKill(x, y, bot, enemy, cheatActivated, me);
 	}
 	return false;
 }
