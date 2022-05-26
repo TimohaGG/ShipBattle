@@ -317,14 +317,7 @@ void cheats(Player enemy) {
 
 }
 
-void SaveGameProgressStruct(ship* flot,int size, string filename) {
-	ofstream f1(filename, ios::binary | ios::out);
-	for (size_t i = 0; i < size; i++)
-	{
-		f1.write((char*)&flot[i], sizeof(flot[i]));
-	}
-	f1.close();
-}
+
 
 void SaveGameProgress(Player player, string filename) {
 	ofstream f1(filename, ios::binary | ios::out);
@@ -370,6 +363,7 @@ bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 		}
 		else if (coords == "save") {
 			SaveGameProgress(me, "Files\\Player 1.bin");
+			SaveGameProgress(enemy, "Files\\Player 2.bin");
 			/*SaveGameProgress(me.field, "Files/Player1Field.txt");
 			SaveGameProgress(me.fieldForKills, "Files/Player1Kills.txt");
 			SaveGameProgress(enemy.field, "Files/Player2Field.txt");
