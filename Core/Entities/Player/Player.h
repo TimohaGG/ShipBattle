@@ -21,3 +21,4 @@ struct Player {
 };
 void Gamemode(bool& autoPut1, bool& autoPut2, bool& autoPlay1, bool& autoPlay2);
 void SaveGameProgress(char field[width][width]);
+void LoadGame(Player& a, string filename);

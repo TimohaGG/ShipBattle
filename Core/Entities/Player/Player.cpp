@@ -317,22 +317,34 @@ void cheats(Player enemy) {
 
 }
 
-void SaveGameProgress(char field[width][width], string filename) {
-	ofstream Player1(filename, ios::out);
-	if (Player1.is_open()) {
-		
-		for (size_t i = 0; i < width; i++)
-		{
-			for (size_t j = 0; j < width; j++)
-			{
-				Player1 << field[i][j];
-			}
-			Player1 << endl;
+void SaveGameProgressStruct(ship* flot,int size, string filename) {
+	ofstream f1(filename, ios::binary | ios::out);
+	for (size_t i = 0; i < size; i++)
+	{
+		f1.write((char*)&flot[i], sizeof(flot[i]));
+	}
+	f1.close();
+}
 
-		}
+void SaveGameProgress(Player player, string filename) {
+	ofstream f1(filename, ios::binary | ios::out);
+	if (f1.is_open()) {
+		f1.write((char*)&player, sizeof(player));
+		f1.close();
+	}
+	else {
+		cout << "Error opening file!!!" << endl;
+	}	
+}
 
-		
-		Player1.close();
+void LoadGame(Player& a, string filename) {
+	ifstream f1(filename, ios::binary | ios::in);
+	if (f1.is_open()) {
+		f1.read((char*)&a, sizeof(a));
+		f1.close();
+	}
+	else {
+		cout << "Error opening file" << endl;
 	}
 }
 
@@ -357,10 +369,13 @@ bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 			return true;
 		}
 		else if (coords == "save") {
-			SaveGameProgress(me.field, "Player1Field.txt");
-			SaveGameProgress(me.fieldForKills, "Player1Kills.txt");
-			SaveGameProgress(enemy.field, "Player2Field.txt");
-			SaveGameProgress(enemy.fieldForKills, "Player2Kills.txt");
+			SaveGameProgress(me, "Files\\Player 1.bin");
+			/*SaveGameProgress(me.field, "Files/Player1Field.txt");
+			SaveGameProgress(me.fieldForKills, "Files/Player1Kills.txt");
+			SaveGameProgress(enemy.field, "Files/Player2Field.txt");
+			SaveGameProgress(enemy.fieldForKills, "Files/Player2Kills.txt");
+			SaveGameProgressStruct(me.flot, 10,"Files/Player_1_Flot.bin");
+			SaveGameProgressStruct(me.flot, 10, "Files/Player_2_Flot.bin");*/
 			cout << "Спасибо за игру!!!";
 			exit(0);
 		}
