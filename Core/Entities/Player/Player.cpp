@@ -364,12 +364,7 @@ bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 		else if (coords == "save") {
 			SaveGameProgress(me, "Files\\Player 1.bin");
 			SaveGameProgress(enemy, "Files\\Player 2.bin");
-			/*SaveGameProgress(me.field, "Files/Player1Field.txt");
-			SaveGameProgress(me.fieldForKills, "Files/Player1Kills.txt");
-			SaveGameProgress(enemy.field, "Files/Player2Field.txt");
-			SaveGameProgress(enemy.fieldForKills, "Files/Player2Kills.txt");
-			SaveGameProgressStruct(me.flot, 10,"Files/Player_1_Flot.bin");
-			SaveGameProgressStruct(me.flot, 10, "Files/Player_2_Flot.bin");*/
+			system("cls");
 			cout << "Спасибо за игру!!!";
 			exit(0);
 		}
