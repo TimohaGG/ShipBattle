@@ -319,75 +319,145 @@ void cheats(Player enemy) {
 
 
 
-void SaveGameProgress(Player player, string filename) {
+void SaveGameProgress(Player player, string filename, string filenameFlot) {
 	ofstream f1(filename, ios::binary | ios::out);
 	if (f1.is_open()) {
-		f1.write((char*)&player, sizeof(player));
+		f1.write((char*)&player.autoPlay, sizeof(player.autoPlay));
+		f1.write((char*)&player.autoPut, sizeof(player.autoPut));
+		f1.write((char*)&player.field, sizeof(player.field));
+		f1.write((char*)&player.fieldForKills, sizeof(player.fieldForKills));
+		for (size_t i = 0; i < 10; i++)
+		{
+			f1.write((char*)&player.flot[i], sizeof(player.flot[i]));
+			/*f1.write((char*)&player.flot[i].y, sizeof(player.flot[i].y));
+			f1.write((char*)&player.flot[i].deckNum, sizeof(player.flot[i].deckNum));
+			f1.write((char*)&player.flot[i].direction, sizeof(player.flot[i].direction));
+			f1.write((char*)&player.flot[i].isDestroyed, sizeof(player.flot[i].isDestroyed));*/
+		}
+
 		f1.close();
 	}
 	else {
 		cout << "Error opening file!!!" << endl;
 	}	
+	//ofstream f2(filenameFlot, ios::binary | ios::out);
+	//if (f2.is_open()) {
+	//	for (size_t i = 0; i < 10; i++)
+	//	{
+	//		f2.write((char*)&player.flot[i].deckNum, sizeof(player.flot)[i].deckNum);
+	//		f2.write((char*)&player.flot[i].direction, sizeof(player.flot)[i].direction);
+	//		f2.write((char*)&player.flot[i].isDestroyed, sizeof(player.flot)[i].isDestroyed);
+	//		f2.write((char*)&player.flot[i].x, sizeof(player.flot)[i].x);
+	//		f2.write((char*)&player.flot[i].y, sizeof(player.flot)[i].y);
+	//	}
+	//	
+	//	//cout << sizeof(player.flot);
+	//	f2.close();
+	//}
+	//else {
+	//	cout << "Error opening file!!!" << endl;
+	//}
 }
 
-void LoadGame(Player& a, string filename) {
+void LoadGame(Player& player, string filename, string filenameFlot) {
 	ifstream f1(filename, ios::binary | ios::in);
 	if (f1.is_open()) {
-		f1.read((char*)&a, sizeof(a));
+		f1.read((char*)&player.autoPlay, sizeof(player.autoPlay));
+		f1.read((char*)&player.autoPut, sizeof(player.autoPut));
+		f1.read((char*)&player.field, sizeof(player.field));
+		f1.read((char*)&player.fieldForKills, sizeof(player.fieldForKills));
+		for (size_t i = 0; i < 10; i++)
+		{
+			f1.read((char*)&player.flot[i], sizeof(player.flot[i]));
+			/*f1.read((char*)&player.flot[i].y, sizeof(player.flot[i].y));
+			f1.read((char*)&player.flot[i].deckNum, sizeof(player.flot[i].deckNum));
+			f1.read((char*)&player.flot[i].direction, sizeof(player.flot[i].direction));
+			f1.read((char*)&player.flot[i].isDestroyed, sizeof(player.flot[i].isDestroyed));*/
+		}
 		f1.close();
 	}
 	else {
 		cout << "Error opening file" << endl;
 	}
+	
+	//ifstream f2(filenameFlot, ios::binary | ios::in);
+	//if (f2.is_open()) {
+	//	//cout << sizeof(a.flot);
+	//	for (size_t i = 0; i < 10; i++)
+	//	{
+	//		//f2.read((char*)&a.flot[i].deckNum, sizeof(a.flot));
+	//		f2.read((char*)&a.flot[i].deckNum, sizeof(a.flot)[i].deckNum);
+	//		f2.read((char*)&a.flot[i].direction, sizeof(a.flot)[i].direction);
+	//		f2.read((char*)&a.flot[i].isDestroyed, sizeof(a.flot)[i].isDestroyed);
+	//		f2.read((char*)&a.flot[i].x, sizeof(a.flot)[i].x);
+	//		f2.read((char*)&a.flot[i].y, sizeof(a.flot)[i].y);
+	//	}
+	//		
+	//	
+	//	
+	//	f2.close();
+	//}
+	//else {
+	//	cout << "Error opening file" << endl;
+	//}
+	/*cout << player.autoPlay << endl;
+	cout << player.autoPut << endl;
+	player.PrintField(player.field);
+	player.PrintField(player.fieldForKills);
+	for (size_t i = 0; i < 10; i++)
+	{
+		cout << i << ":  " << player.flot[i].x << " " << player.flot[i].y << endl;
+		cout << player.flot[i].direction << endl;
+		cout << player.flot[i].deckNum << endl;
+		cout << player.flot[i].isDestroyed << endl;
+	}*/
+	system("pause");
 }
 
 bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActivated, Player me) {
 	char xStr;
 	string yStr;
-	if (bot) {
-		x = rand() % 9;
-		y = rand() % 9;
-	}
-	else {
-		string coords;
-		do {
-
-			cout << "Куда ставить корабль (Например А5)?" << endl;
-			cin >> coords;
-			if (coords == "save")
-				break;
-
-			
-		} while (coords.length() != 2 || !isdigit(coords[1]));
-
-		if (coords[0] == '/') {
-			cheats(enemy);
-			return true;
-		}
-		else if (coords == "save") {
-			SaveGameProgress(me, "Files\\Player 1.bin");
-			SaveGameProgress(enemy, "Files\\Player 2.bin");
-			system("cls");
-			cout << "Спасибо за игру!!!";
-			exit(0);
+	do {
+		if (bot) {
+			x = rand() % 9;
+			y = rand() % 9;
 		}
 		else {
-			
-			x = changeLetter(coords[0]);
-			yStr = coords[1];
-			y = stoi(yStr);
-			
-			
+			string coords;
+			do {
+
+				cout << "Куда ставить корабль (Например А5)?" << endl;
+				cin >> coords;
+				if (coords == "save"||coords=="/")
+					break;
+
+
+			} while (coords.length() != 2 || !isdigit(coords[1]));
+
+			if (coords[0] == '/') {
+				cheats(enemy);
+				return true;
+			}
+			else if (coords == "save") {
+				SaveGameProgress(me, "Files\\Player 1.bin","Files\\Player 1 Flot.bin");
+				SaveGameProgress(enemy, "Files\\Player 2.bin", "Files\\Player 2 Flot.bin");
+				system("cls");
+				cout << "Спасибо за игру!!!";
+				exit(0);
+			}
+			else {
+
+				x = changeLetter(coords[0]);
+				yStr = coords[1];
+				y = stoi(yStr);
+
+
+			}
+
+
+
 		}
-		
-	
-
-	}
-
-	if (me.fieldForKills[y][x] == -73) {
-		cout << "Ошибка постановки корабля!!! "<<endl<<"Координаты заняты!!!"<<endl;
-		setCoordinatesToKill(x, y, bot, enemy, cheatActivated, me);
-	}
+	} while (me.fieldForKills[y][x] == -73);
 	return false;
 }
 
@@ -574,7 +644,7 @@ int turnToKill(Player& a, Player& b, bool& turn) {
 
 }
 
-bool win(ship* flot) {
+ bool win(ship* flot) {
 	for (size_t i = 0; i < 10; i++)
 	{
 		if (flot[i].isDestroyed == false) {

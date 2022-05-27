@@ -20,8 +20,8 @@ struct Menu {
 				b.SettingFlot(playerNumber);
 			}break;
 			case 2: {
-				LoadGame(a, "Files\\Player 1.bin");
-				LoadGame(b, "Files\\Player 2.bin");
+				LoadGame(a, "Files\\Player 1.bin", "Files\\Player 1 Flot.bin");
+				LoadGame(b, "Files\\Player 2.bin", "Files\\Player 2 Flot.bin");
 			}break;
 			
 			case 3:
