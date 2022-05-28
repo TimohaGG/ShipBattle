@@ -39,12 +39,25 @@ struct Menu {
 		bool turn = true;
 		bool gameOver = false;
 		while (!gameOver) {
-			while (turn) {
-				gameOver=a.PlayerTurn(a,b, 1,turn);
+			if (!gameOver) {
+				while (turn) {
+					gameOver = a.PlayerTurn(a, b, 1, turn);
+				}
 			}
-			while (!turn) {
-				gameOver=b.PlayerTurn(b,a, 2,turn);
+			else {
+				cout << "Игрок 1 выиграл!!!"<<endl;
+				exit(0);
 			}
+			if (!gameOver) {
+				while (!turn) {
+					gameOver = b.PlayerTurn(b, a, 2, turn);
+				}
+			}
+			else {
+				cout << "Игрок 2 выиграл!!!" << endl;
+				exit(0);
+			}
+			
 		}
 	}
 };

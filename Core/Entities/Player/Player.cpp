@@ -404,7 +404,7 @@ bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 
 
 		}
-	} while (me.fieldForKills[y][x] == -73);
+	} while (me.fieldForKills[y][x] !='=');
 	return false;
 }
 
@@ -592,7 +592,7 @@ int turnToKill(Player& a, Player& b, bool& turn) {
 
 }
 
- bool win(ship* flot) {
+	 bool win(ship* flot) {
 	for (size_t i = 0; i < 10; i++)
 	{
 		if (flot[i].isDestroyed == false) {
@@ -607,7 +607,7 @@ bool Player::PlayerTurn(Player& a,Player& b, int playerNum, bool& turn)
 	cout << "Ходит игрок "<<playerNum<<endl;
 	system("pause");
 	turnToKill( a,  b, turn);
-	if (win(b.flot)) {
+  	if (win(b.flot)) {
 		return true;
 	}
 	else {
