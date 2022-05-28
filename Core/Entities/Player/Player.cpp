@@ -1,4 +1,4 @@
-#include"Player.h"
+ï»¿#include"Player.h"
 char Player::CreateField(char field[width][width]) {
 	for (size_t i = 0; i < width; i++)
 	{
@@ -45,7 +45,7 @@ void Player::PrintField(char field[width][width]) {
 
 bool putMode() {
 
-	cout << "1. Àâòîìàòè÷åñêàÿ ðàññòàíîâêà êîðàáëåé"<<endl<<"2. Ðó÷íàÿ ðàññòàíîâêà êîðàáëåé"<<endl;
+	cout << "1. ÐÐ²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ°Ñ Ñ€Ð°ÑÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° ÐºÐ¾Ñ€Ð°Ð±Ð»ÐµÐ¹"<<endl<<"2. Ð ÑƒÑ‡Ð½Ð°Ñ Ñ€Ð°ÑÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° ÐºÐ¾Ñ€Ð°Ð±Ð»ÐµÐ¹"<<endl;
 	int choise;
 	cin >> choise;
 	switch (choise) {
@@ -62,7 +62,7 @@ bool putMode() {
 
 void Gamemode(bool& autoPut1, bool& autoPut2, bool& autoPlay1, bool& autoPlay2)
 {
-	cout << "1.Îäèíî÷íûé ðåæèì"<<endl<<"2. Ìóëüòèïëååð"<<endl;
+	cout << "1.ÐžÐ´Ð¸Ð½Ð¾Ñ‡Ð½Ñ‹Ð¹ Ñ€ÐµÐ¶Ð¸Ð¼"<<endl<<"2. ÐœÑƒÐ»ÑŒÑ‚Ð¸Ð¿Ð»ÐµÐµÑ€"<<endl;
 	int choise;
 	cin >> choise;
 	system("cls");
@@ -74,10 +74,10 @@ void Gamemode(bool& autoPut1, bool& autoPut2, bool& autoPlay1, bool& autoPlay2)
 		break;
 	}
 	case 2: {
-		cout << "Èãðîê 1 âûáèðàåò ðàññòàíîâêó:"<<endl;
+		cout << "Ð˜Ð³Ñ€Ð¾Ðº 1 Ð²Ñ‹Ð±Ð¸Ñ€Ð°ÐµÑ‚ Ñ€Ð°ÑÑÑ‚Ð°Ð½Ð¾Ð²ÐºÑƒ:"<<endl;
 		autoPut1 = putMode();
 		system("cls");
-		cout << "Èãðîê 2 âûáèðàåò ðàññòàíîâêó:" << endl;
+		cout << "Ð˜Ð³Ñ€Ð¾Ðº 2 Ð²Ñ‹Ð±Ð¸Ñ€Ð°ÐµÑ‚ Ñ€Ð°ÑÑÑ‚Ð°Ð½Ð¾Ð²ÐºÑƒ:" << endl;
 		autoPut2 = putMode();
 		break;
 	}
@@ -123,7 +123,7 @@ int changeLetter(char symbol) {
 }
 
 bool setCoordinates(int& x, int& y, bool bot, char field[width][width]) {
-	//ñòàâèì ïåðâóþ êîîðäèíàòó è ïðîâåðåì íåò ëè íà íåé êîðàáëÿ
+	//ÑÑ‚Ð°Ð²Ð¸Ð¼ Ð¿ÐµÑ€Ð²ÑƒÑŽ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñƒ Ð¸ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐµÐ¼ Ð½ÐµÑ‚ Ð»Ð¸ Ð½Ð° Ð½ÐµÐ¹ ÐºÐ¾Ñ€Ð°Ð±Ð»Ñ
 	
 	string yStr;
 	do {
@@ -135,7 +135,7 @@ bool setCoordinates(int& x, int& y, bool bot, char field[width][width]) {
 			string coords;
 			do {
 				
-				cout << "Êóäà ñòàâèòü êîðàáëü (Íàïðèìåð À5)?" << endl;
+				cout << "ÐšÑƒÐ´Ð° ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ ÐºÐ¾Ñ€Ð°Ð±Ð»ÑŒ (ÐÐ°Ð¿Ñ€Ð¸Ð¼ÐµÑ€ Ð5)?" << endl;
 				cin >> coords;
 			} while (coords.length()!=2 || coords[0] < 'A' || coords[0]>'J'||!isdigit(coords[1]));
 			x = changeLetter(coords[0]);
@@ -177,13 +177,13 @@ char setShip(char field[width][width], int direction, int decks, int x, int y) {
 }
 
 bool directionChose(int x, int y, int decks, char field[width][width], int& direction, bool bot) {
-	//Ýòà ôóíêöèÿ ïðîâåðÿåò íåò ëè íà ïóòè äðóãèõ êîðàáëåé è âûõîä çà ïîëå
+	//Ð­Ñ‚Ð° Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐµÑ‚ Ð½ÐµÑ‚ Ð»Ð¸ Ð½Ð° Ð¿ÑƒÑ‚Ð¸ Ð´Ñ€ÑƒÐ³Ð¸Ñ… ÐºÐ¾Ñ€Ð°Ð±Ð»ÐµÐ¹ Ð¸ Ð²Ñ‹Ñ…Ð¾Ð´ Ð·Ð° Ð¿Ð¾Ð»Ðµ
 	if (decks > 1) {
 		if (bot) {
 			direction = rand() % (5 - 1) + 1;
 		}
 		else {
-			cout << "Â êàêóþ ñòîðîíó ïðîäîëæèòü êîðàáëü?"<<endl<<"1. Âïðâî" << endl << "2. Âëåâî" << endl << "3. Âíèç" << endl << "4. Ââåðõ" << endl;
+			cout << "Ð’ ÐºÐ°ÐºÑƒÑŽ ÑÑ‚Ð¾Ñ€Ð¾Ð½Ñƒ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ ÐºÐ¾Ñ€Ð°Ð±Ð»ÑŒ?"<<endl<<"1. Ð’Ð¿Ñ€Ð²Ð¾" << endl << "2. Ð’Ð»ÐµÐ²Ð¾" << endl << "3. Ð’Ð½Ð¸Ð·" << endl << "4. Ð’Ð²ÐµÑ€Ñ…" << endl;
 			cin >> direction;
 		}
 		for (size_t i = 0; i < decks; i++)
@@ -261,7 +261,7 @@ bool checkSides(int decks, int x, int y, char field[width][width], int direction
 
 char Player::SettingFlot(int player)
 {
-	cout << "Èãðîê "<<player<<" ðàññòàâëÿåò êîðàáëè..." << endl;
+	cout << "Ð˜Ð³Ñ€Ð¾Ðº "<<player<<" Ñ€Ð°ÑÑÑ‚Ð°Ð²Ð»ÑÐµÑ‚ ÐºÐ¾Ñ€Ð°Ð±Ð»Ð¸..." << endl;
 	PrintField(field);
 	system("pause");
 	int shipTotal = 0;
@@ -272,7 +272,7 @@ char Player::SettingFlot(int player)
 
 			while (!setCoordinates(x, y, autoPut, field) || !directionChose(x, y, decks, field, direction,autoPut) || !checkSides(decks, x, y, field, direction)) {
 				if (!autoPut) {
-					cout << "Îøèáêà ïîñòàíîâêè êîðàáëÿ!!!" << endl;
+					cout << "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ð¾ÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ¸ ÐºÐ¾Ñ€Ð°Ð±Ð»Ñ!!!" << endl;
 					system("pause");
 					system("cls");
 					if (!autoPlay)PrintField(field);
@@ -292,15 +292,15 @@ char Player::SettingFlot(int player)
 	}
 
 	
-	cout << "Êîðàáëè óñïåøíî ðàññòàâëåíû" << endl;
+	cout << "ÐšÐ¾Ñ€Ð°Ð±Ð»Ð¸ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ñ€Ð°ÑÑÑ‚Ð°Ð²Ð»ÐµÐ½Ñ‹" << endl;
 	system("pause");
 	system("cls");
 	return field[width][width];
 }
 
 void cheats(Player enemy) {
-	cout << "ÂÛ ÀÊÒÈÂÈÐÎÂÀËÈ ×ÈÒÛ!!!" << endl;
-	cout << "Ââåäèòå êîìàíäó..." << endl;
+	cout << "Ð’Ð« ÐÐšÐ¢Ð˜Ð’Ð˜Ð ÐžÐ’ÐÐ›Ð˜ Ð§Ð˜Ð¢Ð«!!!" << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñƒ..." << endl;
 	char command[256];
 	cin >> command;
 	system("cls");
@@ -312,7 +312,7 @@ void cheats(Player enemy) {
 		system("cls");
 	}
 	else {
-		cout << "Óïñ. Òàêîé êîìàíäû íåòó. Â ñëåäóéùèé ðàç ïîâåçåò!" << endl;
+		cout << "Ð£Ð¿Ñ. Ð¢Ð°ÐºÐ¾Ð¹ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð½ÐµÑ‚Ñƒ. Ð’ ÑÐ»ÐµÐ´ÑƒÐ¹Ñ‰Ð¸Ð¹ Ñ€Ð°Ð· Ð¿Ð¾Ð²ÐµÐ·ÐµÑ‚!" << endl;
 	}
 
 }
@@ -329,10 +329,7 @@ void SaveGameProgress(Player player, string filename, string filenameFlot) {
 		for (size_t i = 0; i < 10; i++)
 		{
 			f1.write((char*)&player.flot[i], sizeof(player.flot[i]));
-			/*f1.write((char*)&player.flot[i].y, sizeof(player.flot[i].y));
-			f1.write((char*)&player.flot[i].deckNum, sizeof(player.flot[i].deckNum));
-			f1.write((char*)&player.flot[i].direction, sizeof(player.flot[i].direction));
-			f1.write((char*)&player.flot[i].isDestroyed, sizeof(player.flot[i].isDestroyed));*/
+		
 		}
 
 		f1.close();
@@ -340,23 +337,7 @@ void SaveGameProgress(Player player, string filename, string filenameFlot) {
 	else {
 		cout << "Error opening file!!!" << endl;
 	}	
-	//ofstream f2(filenameFlot, ios::binary | ios::out);
-	//if (f2.is_open()) {
-	//	for (size_t i = 0; i < 10; i++)
-	//	{
-	//		f2.write((char*)&player.flot[i].deckNum, sizeof(player.flot)[i].deckNum);
-	//		f2.write((char*)&player.flot[i].direction, sizeof(player.flot)[i].direction);
-	//		f2.write((char*)&player.flot[i].isDestroyed, sizeof(player.flot)[i].isDestroyed);
-	//		f2.write((char*)&player.flot[i].x, sizeof(player.flot)[i].x);
-	//		f2.write((char*)&player.flot[i].y, sizeof(player.flot)[i].y);
-	//	}
-	//	
-	//	//cout << sizeof(player.flot);
-	//	f2.close();
-	//}
-	//else {
-	//	cout << "Error opening file!!!" << endl;
-	//}
+	
 }
 
 void LoadGame(Player& player, string filename, string filenameFlot) {
@@ -369,10 +350,6 @@ void LoadGame(Player& player, string filename, string filenameFlot) {
 		for (size_t i = 0; i < 10; i++)
 		{
 			f1.read((char*)&player.flot[i], sizeof(player.flot[i]));
-			/*f1.read((char*)&player.flot[i].y, sizeof(player.flot[i].y));
-			f1.read((char*)&player.flot[i].deckNum, sizeof(player.flot[i].deckNum));
-			f1.read((char*)&player.flot[i].direction, sizeof(player.flot[i].direction));
-			f1.read((char*)&player.flot[i].isDestroyed, sizeof(player.flot[i].isDestroyed));*/
 		}
 		f1.close();
 	}
@@ -380,38 +357,8 @@ void LoadGame(Player& player, string filename, string filenameFlot) {
 		cout << "Error opening file" << endl;
 	}
 	
-	//ifstream f2(filenameFlot, ios::binary | ios::in);
-	//if (f2.is_open()) {
-	//	//cout << sizeof(a.flot);
-	//	for (size_t i = 0; i < 10; i++)
-	//	{
-	//		//f2.read((char*)&a.flot[i].deckNum, sizeof(a.flot));
-	//		f2.read((char*)&a.flot[i].deckNum, sizeof(a.flot)[i].deckNum);
-	//		f2.read((char*)&a.flot[i].direction, sizeof(a.flot)[i].direction);
-	//		f2.read((char*)&a.flot[i].isDestroyed, sizeof(a.flot)[i].isDestroyed);
-	//		f2.read((char*)&a.flot[i].x, sizeof(a.flot)[i].x);
-	//		f2.read((char*)&a.flot[i].y, sizeof(a.flot)[i].y);
-	//	}
-	//		
-	//	
-	//	
-	//	f2.close();
-	//}
-	//else {
-	//	cout << "Error opening file" << endl;
-	//}
-	/*cout << player.autoPlay << endl;
-	cout << player.autoPut << endl;
-	player.PrintField(player.field);
-	player.PrintField(player.fieldForKills);
-	for (size_t i = 0; i < 10; i++)
-	{
-		cout << i << ":  " << player.flot[i].x << " " << player.flot[i].y << endl;
-		cout << player.flot[i].direction << endl;
-		cout << player.flot[i].deckNum << endl;
-		cout << player.flot[i].isDestroyed << endl;
-	}*/
-	system("pause");
+	
+	
 }
 
 bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActivated, Player me) {
@@ -426,7 +373,7 @@ bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 			string coords;
 			do {
 
-				cout << "Êóäà ñòàâèòü êîðàáëü (Íàïðèìåð À5)?" << endl;
+				cout << "ÐšÑƒÐ´Ð° ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ ÐºÐ¾Ñ€Ð°Ð±Ð»ÑŒ (ÐÐ°Ð¿Ñ€Ð¸Ð¼ÐµÑ€ Ð5)?" << endl;
 				cin >> coords;
 				if (coords == "save"||coords=="/")
 					break;
@@ -442,7 +389,7 @@ bool setCoordinatesToKill(int& x, int& y, int bot, Player enemy, bool& cheatActi
 				SaveGameProgress(me, "Files\\Player 1.bin","Files\\Player 1 Flot.bin");
 				SaveGameProgress(enemy, "Files\\Player 2.bin", "Files\\Player 2 Flot.bin");
 				system("cls");
-				cout << "Ñïàñèáî çà èãðó!!!";
+				cout << "Ð¡Ð¿Ð°ÑÐ¸Ð±Ð¾ Ð·Ð° Ð¸Ð³Ñ€Ñƒ!!!";
 				exit(0);
 			}
 			else {
@@ -554,16 +501,16 @@ char circleKill(ship flot, char myFieldForKills[width][width]) {
 	{
 		if (x + 1 <= 9)
 			if (myFieldForKills[y][x + 1] != 'X')
-				myFieldForKills[y][x + 1] = '·';
+				myFieldForKills[y][x + 1] = 'Â·';
 		if (x - 1 >= 0)
 			if (myFieldForKills[y][x - 1] != 'X')
-				myFieldForKills[y][x - 1] = '·';
+				myFieldForKills[y][x - 1] = 'Â·';
 		if (y + 1 <= 9)
 			if (myFieldForKills[y + 1][x] != 'X')
-				myFieldForKills[y + 1][x] = '·';
+				myFieldForKills[y + 1][x] = 'Â·';
 		if (y - 1 >= 0)
 			if (myFieldForKills[y - 1][x] != 'X')
-				myFieldForKills[y - 1][x] = '·';
+				myFieldForKills[y - 1][x] = 'Â·';
 		switch (flot.direction) {
 		case 0: {
 			return myFieldForKills[width][width];
@@ -593,9 +540,10 @@ char circleKill(ship flot, char myFieldForKills[width][width]) {
 
 int turnToKill(Player& a, Player& b, bool& turn) {
 	if (!a.autoPlay) {
-		cout << "Âàøå ïîëå" << endl;
+		cout << "Ð’Ð°ÑˆÐµ Ð¿Ð¾Ð»Ðµ" << endl;
 		a.PrintField(a.field);
-		cout << "Ïîëå äëÿ õîäîâ" << endl;
+		
+		cout << "ÐŸÐ¾Ð»Ðµ Ð´Ð»Ñ Ñ…Ð¾Ð´Ð¾Ð²" << endl;
 		a.PrintField(a.fieldForKills);
 	}
 	int killX, killY;
@@ -603,22 +551,22 @@ int turnToKill(Player& a, Player& b, bool& turn) {
 	
 	if (!setCoordinatesToKill(killX, killY, a.autoPlay, b, cheatActivated, a)) {
 		if (b.field[killY][killX] == 'S') {
-			cout << "Ïîïàë" << endl;
+			cout << "ÐŸÐ¾Ð¿Ð°Ð»" << endl;
 			Sleep(2000);
 			system("cls");
 			b.field[killY][killX] = 'X';
 			a.fieldForKills[killY][killX] = 'X';
 			int shipIndex = findShipIndex(killX, killY, b.flot);
 			if (checkKill(shipIndex, b.field, b.flot)) {
-				cout << "Óáèë!" << endl;
+				cout << "Ð£Ð±Ð¸Ð»!" << endl;
 				system("pause");
 				system("cls");
 				circleKill(b.flot[shipIndex], a.fieldForKills);
 			}
 		}
 		else {
-			cout << "Ìèìî!" << endl;
-			a.fieldForKills[killY][killX] = '·';
+			cout << "ÐœÐ¸Ð¼Ð¾!" << endl;
+			a.fieldForKills[killY][killX] = 'Â·';
 			if (a.autoPlay)a.PrintField(a.fieldForKills);
 			system("pause");
 			system("cls");
@@ -632,7 +580,7 @@ int turnToKill(Player& a, Player& b, bool& turn) {
 		}
 	}
 	else {
-		cout << "×èò óñïåøíî ïðèìåíåí" << endl;
+		cout << "Ð§Ð¸Ñ‚ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¿Ñ€Ð¸Ð¼ÐµÐ½ÐµÐ½" << endl;
 		cheatActivated = false;
 		system("pause");
 		system("cls");
@@ -656,7 +604,7 @@ int turnToKill(Player& a, Player& b, bool& turn) {
 
 bool Player::PlayerTurn(Player& a,Player& b, int playerNum, bool& turn)
 {
-	cout << "Õîäèò èãðîê "<<playerNum<<endl;
+	cout << "Ð¥Ð¾Ð´Ð¸Ñ‚ Ð¸Ð³Ñ€Ð¾Ðº "<<playerNum<<endl;
 	system("pause");
 	turnToKill( a,  b, turn);
 	if (win(b.flot)) {
