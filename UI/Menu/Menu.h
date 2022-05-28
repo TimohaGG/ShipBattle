@@ -42,19 +42,23 @@ struct Menu {
 			if (!gameOver) {
 				while (turn) {
 					gameOver = a.PlayerTurn(a, b, 1, turn);
+					turn = false;
 				}
 			}
-			else {
+			if(gameOver) {
 				cout << "Игрок 1 выиграл!!!"<<endl;
+				system("pause");
 				exit(0);
 			}
 			if (!gameOver) {
 				while (!turn) {
 					gameOver = b.PlayerTurn(b, a, 2, turn);
+					turn = true;
 				}
 			}
-			else {
+			if (gameOver) {
 				cout << "Игрок 2 выиграл!!!" << endl;
+				system("pause");
 				exit(0);
 			}
 			

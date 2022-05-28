@@ -580,7 +580,7 @@ int turnToKill(Player& a, Player& b, bool& turn) {
 		}
 	}
 	else {
-		cout << "Чит успешно применен" << endl;
+		cout << "Вы применили читы!!!" << endl;
 		cheatActivated = false;
 		system("pause");
 		system("cls");
@@ -591,8 +591,8 @@ int turnToKill(Player& a, Player& b, bool& turn) {
 	}
 
 }
-
-	 bool win(ship* flot) {
+ 
+bool win(ship* flot) {
 	for (size_t i = 0; i < 10; i++)
 	{
 		if (flot[i].isDestroyed == false) {
