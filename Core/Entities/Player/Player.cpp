@@ -464,7 +464,6 @@ bool checkKill(int shipIndex, char fieldEnemy[width][width], ship* flotEnemy) {
 		case 0: {
 			flotEnemy[shipIndex].isDestroyed = true;
 			return true;
-			break;
 		}
 		case 1: {
 			if (fieldEnemy[y][x + i] == 'S')
